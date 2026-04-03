@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zinami Biotechnology Co., Ltd.</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B4458; --navy-dark: #102B38; --navy-light: #245570;
+    --accent: #4CA8C8; --accent-bright: #6EC9E8;
+    --white: #F8F9FA; --gray-light: #E8EDF0; --gray-mid: #9BADB8;
+    --text-dark: #1A2A33; --text-body: #3D5260;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Barlow','Noto Sans TC',sans-serif; background:var(--white); color:var(--text-dark); overflow-x:hidden; }
+
+  /* LANG BAR */
+  .lang-bar { position:fixed; top:0; right:0; z-index:1100; display:flex; }
+  .lang-btn { padding:10px 18px; border:none; cursor:pointer; font-family:'Barlow',sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; transition:all .2s; }
+  .lang-btn.active { background:var(--accent); color:#fff; }
+  .lang-btn:not(.active) { background:rgba(255,255,255,.12); color:rgba(255,255,255,.65); }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:999; display:flex; align-items:center; justify-content:space-between; padding:0 48px; height:70px; background:rgba(16,43,56,.97); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,.08); }
+  .nav-logo { display:flex; align-items:center; text-decoration:none; }
+  .nav-logo-box { background:#fff; padding:6px 14px; }
+  .nav-logo-box span { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:800; color:#1B4458; letter-spacing:3px; }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a { color:rgba(255,255,255,.7); text-decoration:none; font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; transition:color .2s; position:relative; }
+  .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; right:0; height:1px; background:var(--accent-bright); transform:scaleX(0); transition:transform .25s; }
+  .nav-links a:hover { color:#fff; }
+  .nav-links a:hover::after { transform:scaleX(1); }
+
+  /* HERO */
+  .hero { min-height:100vh; background:var(--navy-dark); position:relative; display:flex; align-items:center; overflow:hidden; padding-top:70px; }
+  .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse at 70% 50%,rgba(76,168,200,.12) 0%,transparent 60%),linear-gradient(135deg,#0D2233 0%,#1B4458 50%,#102B38 100%); }
+  .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(76,168,200,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(76,168,200,.04) 1px,transparent 1px); background-size:60px 60px; }
+  .hero-content { position:relative; z-index:2; padding:0 80px; max-width:820px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:10px; margin-bottom:28px; padding:8px 16px; border:1px solid rgba(76,168,200,.4); color:var(--accent-bright); font-size:11px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; animation:fadeInUp .8s ease both; }
+  .hero-tag::before { content:''; display:block; width:20px; height:1px; background:var(--accent-bright); }
+  .hero-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(48px,7vw,86px); font-weight:800; line-height:.95; color:#fff; letter-spacing:-1px; text-transform:uppercase; animation:fadeInUp .8s .15s ease both; margin-bottom:8px; }
+  .hero-title span { color:var(--accent); display:block; }
+  .hero-subtitle { font-size:14px; color:rgba(255,255,255,.45); letter-spacing:1px; font-weight:300; margin-bottom:28px; animation:fadeInUp .8s .25s ease both; }
+  .hero-desc { font-size:16px; line-height:1.8; color:rgba(255,255,255,.65); max-width:560px; margin-bottom:44px; animation:fadeInUp .8s .35s ease both; font-weight:300; }
+  .hero-cta { display:flex; gap:16px; animation:fadeInUp .8s .45s ease both; }
+  .btn-primary { padding:14px 32px; background:var(--accent); color:#fff; text-decoration:none; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; transition:all .25s; border:2px solid var(--accent); display:inline-block; }
+  .btn-primary:hover { background:var(--accent-bright); border-color:var(--accent-bright); transform:translateY(-2px); }
+  .btn-outline { padding:14px 32px; background:transparent; color:rgba(255,255,255,.75); text-decoration:none; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; border:2px solid rgba(255,255,255,.25); transition:all .25s; display:inline-block; }
+  .btn-outline:hover { border-color:rgba(255,255,255,.7); color:#fff; }
+  .hero-stats { position:absolute; right:80px; bottom:80px; display:flex; gap:48px; animation:fadeInUp .8s .55s ease both; }
+  .stat { text-align:center; }
+  .stat-num { font-family:'Barlow Condensed',sans-serif; font-size:44px; font-weight:700; color:var(--accent-bright); line-height:1; display:block; }
+  .stat-label { font-size:10px; color:rgba(255,255,255,.4); letter-spacing:1.5px; text-transform:uppercase; margin-top:4px; }
+
+  /* SECTIONS */
+  section { padding:100px 80px; }
+  .section-label { display:inline-flex; align-items:center; gap:12px; font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:20px; }
+  .section-label::before { content:''; display:block; width:32px; height:2px; background:var(--accent); }
+  .section-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(32px,4vw,52px); font-weight:700; line-height:1.05; color:var(--navy-dark); text-transform:uppercase; letter-spacing:-.5px; margin-bottom:24px; }
+
+  /* ABOUT */
+  #about { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .about-text p { font-size:16px; line-height:1.85; color:var(--text-body); margin-bottom:20px; font-weight:300; }
+  .focus-areas { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .focus-item { padding:20px; background:var(--navy); color:#fff; position:relative; overflow:hidden; transition:transform .25s; }
+  .focus-item:hover { transform:translateY(-3px); }
+  .focus-item::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--accent); }
+  .focus-item-icon { font-size:20px; margin-bottom:8px; display:block; }
+  .focus-item-title { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--accent-bright); }
+
+  /* PARTNERS */
+  #partners { background:var(--navy-dark); padding:80px; }
+  #partners .section-label { color:var(--accent-bright); }
+  #partners .section-label::before { background:var(--accent-bright); }
+  #partners .section-title { color:#fff; }
+  .partners-intro { color:rgba(255,255,255,.6); font-size:15px; max-width:600px; font-weight:300; line-height:1.7; }
+  .partners-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:2px; margin-top:48px; }
+  .partner-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); padding:36px 20px; text-align:center; transition:all .3s; }
+  .partner-card:hover { background:rgba(76,168,200,.12); border-color:rgba(76,168,200,.3); transform:translateY(-4px); }
+  .partner-flag { font-size:28px; margin-bottom:14px; display:block; }
+  .partner-name { font-family:'Barlow Condensed',sans-serif; font-size:17px; font-weight:700; color:#fff; letter-spacing:.5px; margin-bottom:6px; line-height:1.2; }
+  .partner-country { font-size:10px; color:var(--accent); letter-spacing:2px; text-transform:uppercase; }
+
+  /* PRODUCTS */
+  #products { background:var(--gray-light); }
+  .products-intro-text { font-size:15px; color:var(--text-body); line-height:1.75; font-weight:300; max-width:640px; margin-bottom:52px; }
+  .products-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:3px; }
+  .product-card { background:#fff; padding:32px; transition:all .3s; position:relative; overflow:hidden; border-bottom:3px solid transparent; }
+  .product-card:hover { border-bottom-color:var(--accent); transform:translateY(-2px); box-shadow:0 12px 40px rgba(27,68,88,.1); }
+  .product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--navy),var(--accent)); }
+  .product-no { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px; color:var(--gray-mid); text-transform:uppercase; margin-bottom:6px; }
+  .product-badge { display:inline-flex; align-items:center; gap:5px; font-size:10px; color:var(--accent); font-weight:700; letter-spacing:.5px; margin-bottom:10px; }
+  .product-badge::before { content:'✓'; background:var(--accent); color:#fff; width:15px; height:15px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:9px; }
+  .product-name-primary { font-family:'Barlow Condensed','Noto Sans TC',sans-serif; font-size:20px; font-weight:700; color:var(--navy-dark); letter-spacing:.5px; line-height:1.2; margin-bottom:14px; }
+  .product-meta { display:flex; flex-wrap:wrap; gap:6px; padding-top:14px; border-top:1px solid var(--gray-light); }
+  .tag { font-size:10px; font-weight:600; padding:3px 10px; }
+  .tag-maker { background:rgba(27,68,88,.08); color:var(--navy); }
+  .tag-date { background:rgba(76,168,200,.1); color:var(--navy-light); }
+
+  /* COMPLIANCE */
+  #compliance { background:var(--navy); }
+  #compliance .section-label { color:var(--accent-bright); }
+  #compliance .section-label::before { background:var(--accent-bright); }
+  #compliance .section-title { color:#fff; }
+  .compliance-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:48px; }
+  .compliance-card { padding:40px; border:1px solid rgba(255,255,255,.1); position:relative; }
+  .compliance-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:3px; background:linear-gradient(90deg,var(--accent),var(--accent-bright)); }
+  .compliance-icon { font-size:34px; margin-bottom:18px; }
+  .compliance-title { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:700; color:var(--accent-bright); text-transform:uppercase; letter-spacing:1px; margin-bottom:14px; }
+  .compliance-desc { font-size:14px; line-height:1.85; color:rgba(255,255,255,.62); font-weight:300; }
+
+  /* CONTACT */
+  #contact { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+  .contact-lead { font-size:15px; line-height:1.75; font-weight:300; color:var(--text-body); margin-bottom:40px; }
+  .contact-item { display:flex; gap:18px; align-items:flex-start; margin-bottom:28px; padding-bottom:28px; border-bottom:1px solid var(--gray-light); }
+  .contact-item:last-child { border-bottom:none; }
+  .contact-icon { width:42px; height:42px; background:var(--navy); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .contact-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray-mid); margin-bottom:4px; }
+  .contact-value { font-size:14px; color:var(--text-dark); line-height:1.65; }
+  .contact-value a { color:var(--accent); text-decoration:none; }
+  .contact-value a:hover { text-decoration:underline; }
+  .form-title { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; text-transform:uppercase; color:var(--navy-dark); margin-bottom:24px; }
+  .form-group { margin-bottom:14px; }
+  .form-label { display:block; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--navy); margin-bottom:5px; }
+  .form-input, .form-textarea { width:100%; padding:11px 14px; border:1px solid var(--gray-light); border-radius:0; font-family:'Barlow','Noto Sans TC',sans-serif; font-size:14px; color:var(--text-dark); background:#fff; transition:border-color .2s; outline:none; }
+  .form-input:focus, .form-textarea:focus { border-color:var(--accent); }
+  .form-textarea { resize:vertical; min-height:110px; }
+  .form-btn { width:100%; padding:14px; background:var(--navy); color:#fff; font-family:'Barlow',sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border:none; cursor:pointer; transition:background .25s; }
+  .form-btn:hover { background:var(--accent); }
+
+  /* FOOTER */
+  footer { background:var(--navy-dark); padding:36px 80px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(255,255,255,.08); }
+  .footer-logo { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:800; color:#fff; letter-spacing:3px; }
+  .footer-copy { font-size:11px; color:rgba(255,255,255,.3); }
+
+  /* ANIMATIONS */
+  @keyframes fadeInUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease,transform .65s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width:900px) {
+    nav { padding:0 24px; }
+    .nav-links { display:none; }
+    section { padding:60px 24px; }
+    .hero-content { padding:0 24px; }
+    #about, #contact { grid-template-columns:1fr; gap:40px; }
+    .partners-grid { grid-template-columns:repeat(2,1fr); }
+    .products-grid { grid-template-columns:1fr; }
+    .compliance-grid { grid-template-columns:1fr; }
+    .hero-stats { display:none; }
+    footer { flex-direction:column; gap:16px; text-align:center; padding:36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LANG TOGGLE -->
+<div class="lang-bar">
+  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中文</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-box"><span>ZINAMI</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about"      data-en="About Us"   data-zh="關於我們">About Us</a></li>
+    <li><a href="#partners"   data-en="Partners"   data-zh="合作夥伴">Partners</a></li>
+    <li><a href="#products"   data-en="Products"   data-zh="產品目錄">Products</a></li>
+    <li><a href="#compliance" data-en="Compliance" data-zh="法規認證">Compliance</a></li>
+    <li><a href="#contact"    data-en="Contact"    data-zh="聯絡我們">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag" data-en="Medical Device Distribution · Taiwan" data-zh="醫療器材代理 · 台灣">Medical Device Distribution · Taiwan</div>
+    <h1 class="hero-title" id="hero-title">Advancing<br><span>Clinical</span>Solutions</h1>
+    <p class="hero-subtitle" data-en="Zinami Biotechnology Co., Ltd." data-zh="聖那美生技有限公司 &nbsp;|&nbsp; Zinami Biotechnology Co., Ltd.">Zinami Biotechnology Co., Ltd.</p>
+    <p class="hero-desc"
+       data-en="A premier medical device distributor in Taiwan — empowering surgeons with the most suitable and advanced clinical solutions across Orthopedics, Fracture Fixation, Neurosurgery, Regenerative Medicine, and Reconstructive Surgery."
+       data-zh="台灣頂尖醫療器材代理商，專注於骨科、骨折固定、神經外科、再生醫學及重建外科，致力為外科醫師提供最適切的先進臨床解方。">A premier medical device distributor in Taiwan — empowering surgeons with the most suitable and advanced clinical solutions across Orthopedics, Fracture Fixation, Neurosurgery, Regenerative Medicine, and Reconstructive Surgery.</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary" data-en="View Products" data-zh="產品目錄">View Products</a>
+      <a href="#contact"  class="btn-outline"  data-en="Get In Touch"  data-zh="聯絡我們">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">5</span><div class="stat-label" data-en="Global Partners" data-zh="全球合作品牌">Global Partners</div></div>
+    <div class="stat"><span class="stat-num">18</span><div class="stat-label" data-en="TFDA Licenses" data-zh="衛部器材許可">TFDA Licenses</div></div>
+    <div class="stat"><span class="stat-num">GDP</span><div class="stat-label" data-en="Certified" data-zh="優良配銷認證">Certified</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <div class="about-text">
+    <div class="section-label" data-en="About Us" data-zh="關於我們">About Us</div>
+    <h2 class="section-title" data-en="Premier Medical<br>Device Distributor" data-zh="台灣頂尖<br>醫療器材代理商">Premier Medical<br>Device Distributor</h2>
+    <p data-en="Founded in 2020, Zinami Biotechnology Co., Ltd. is a premier medical device distributor in Taiwan. We specialize in value-added product platforms, dedicated to empowering surgeons with the most suitable and advanced clinical solutions."
+       data-zh="聖那美生技有限公司於 2020 年成立，是台灣頂尖的醫療器材代理商。我們專注於高附加價值的產品平台，致力於為外科醫師提供最適切的先進臨床解方。">Founded in 2020, Zinami Biotechnology Co., Ltd. is a premier medical device distributor in Taiwan. We specialize in value-added product platforms, dedicated to empowering surgeons with the most suitable and advanced clinical solutions.</p>
+    <p data-en="Our core team comprises industry veterans from world-leading medical device companies, bringing decades of clinical expertise to the table. This deep-rooted experience translates into an extensive and robust network across Taiwan's surgical specialties."
+       data-zh="核心團隊成員均來自全球頂尖醫療器材企業，累積數十年臨床專業經驗，在台灣各外科專科建立了廣泛而深厚的合作網絡。">Our core team comprises industry veterans from world-leading medical device companies, bringing decades of clinical expertise to the table. This deep-rooted experience translates into an extensive and robust network across Taiwan's surgical specialties.</p>
+    <p data-en="As an independent distributor, Zinami has the agility to carefully curate our global partnerships — ensuring we introduce only the most innovative and highest-quality medical technologies to the Taiwanese market at competitive values."
+       data-zh="作為獨立代理商，聖那美擁有靈活的優勢，能精心甄選全球合作夥伴，確保僅引進最具創新性與最高品質的醫療技術，以具競爭力的價值服務台灣市場。">As an independent distributor, Zinami has the agility to carefully curate our global partnerships — ensuring we introduce only the most innovative and highest-quality medical technologies to the Taiwanese market at competitive values.</p>
+  </div>
+  <div>
+    <div class="section-label" data-en="Focus Areas" data-zh="核心專科領域">Focus Areas</div>
+    <div class="focus-areas">
+      <div class="focus-item"><span class="focus-item-icon">🦴</span><div class="focus-item-title" data-en="Orthopedics" data-zh="骨科">Orthopedics</div></div>
+      <div class="focus-item"><span class="focus-item-icon">🔩</span><div class="focus-item-title" data-en="Fracture Fixation" data-zh="骨折固定">Fracture Fixation</div></div>
+      <div class="focus-item"><span class="focus-item-icon">🧠</span><div class="focus-item-title" data-en="Neurosurgery" data-zh="神經外科">Neurosurgery</div></div>
+      <div class="focus-item"><span class="focus-item-icon">🔬</span><div class="focus-item-title" data-en="Regenerative Medicine" data-zh="再生醫學">Regenerative Medicine</div></div>
+      <div class="focus-item" style="grid-column:span 2"><span class="focus-item-icon">🏥</span><div class="focus-item-title" data-en="Reconstructive Surgery" data-zh="重建外科">Reconstructive Surgery</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners" class="reveal">
+  <div class="section-label" data-en="Global Partners" data-zh="全球合作夥伴">Global Partners</div>
+  <h2 class="section-title" data-en="Our Global Partners" data-zh="全球合作夥伴">Our Global Partners</h2>
+  <p class="partners-intro"
+     data-en="We are proud to be the authorized Taiwanese distributor for these world-renowned medical innovators."
+     data-zh="我們榮幸成為以下世界知名醫療創新企業的台灣授權代理商。">We are proud to be the authorized Taiwanese distributor for these world-renowned medical innovators.</p>
+  <div class="partners-grid">
+    <div class="partner-card"><span class="partner-flag">🇩🇪</span><div class="partner-name">aap Implantate AG</div><div class="partner-country" data-en="Germany" data-zh="德國">Germany</div></div>
+    <div class="partner-card"><span class="partner-flag">🇭🇺</span><div class="partner-name">Sanatmetal Kft.</div><div class="partner-country" data-en="Hungary" data-zh="匈牙利">Hungary</div></div>
+    <div class="partner-card"><span class="partner-flag">🇩🇪</span><div class="partner-name">risa GmbH</div><div class="partner-country" data-en="Germany" data-zh="德國">Germany</div></div>
+    <div class="partner-card"><span class="partner-flag">🇩🇪</span><div class="partner-name">Innovations Medical GmbH</div><div class="partner-country" data-en="Germany" data-zh="德國">Germany</div></div>
+    <div class="partner-card"><span class="partner-flag">🇮🇹</span><div class="partner-name">Permedica S.p.A.</div><div class="partner-country" data-en="Italy" data-zh="義大利">Italy</div></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="reveal">
+  <div class="section-label" data-en="Products" data-zh="產品目錄">Products</div>
+  <h2 class="section-title" data-en="TFDA Licensed Products" data-zh="TFDA 許可產品">TFDA Licensed Products</h2>
+  <p class="products-intro-text"
+     data-en="All products listed below hold valid TFDA medical device import licenses issued by Taiwan's Food and Drug Administration."
+     data-zh="以下所有產品均持有衛生福利部食品藥物管理署（TFDA）醫療器材許可證，許可證狀態：未註銷。">All products listed below hold valid TFDA medical device import licenses issued by Taiwan's Food and Drug Administration.</p>
+  <div class="products-grid" id="product-grid"></div>
+</section>
+
+<!-- COMPLIANCE -->
+<section id="compliance" class="reveal">
+  <div class="section-label" data-en="Certification &amp; Compliance" data-zh="認證與法規">Certification &amp; Compliance</div>
+  <h2 class="section-title" data-en="Regulatory Compliance" data-zh="法規認證">Regulatory Compliance</h2>
+  <div class="compliance-grid">
+    <div class="compliance-card">
+      <div class="compliance-icon">📋</div>
+      <div class="compliance-title" data-en="Medical Device Dealer License" data-zh="醫療器材商許可執照">Medical Device Dealer License</div>
+      <p class="compliance-desc"
+         data-en="Zinami strictly adheres to TFDA regulations and is fully authorized to import, sell, store, and transport medical devices in Taiwan."
+         data-zh="聖那美嚴格遵循衛生福利部食品藥物管理署（TFDA）相關法規，持有合法授權，可於台灣境內執行醫療器材之進口、銷售、儲存及運輸業務。">Zinami strictly adheres to TFDA regulations and is fully authorized to import, sell, store, and transport medical devices in Taiwan.</p>
+    </div>
+    <div class="compliance-card">
+      <div class="compliance-icon">✅</div>
+      <div class="compliance-title" data-en="Good Distribution Practice (GDP)" data-zh="優良配銷規範（GDP）">Good Distribution Practice (GDP)</div>
+      <p class="compliance-desc"
+         data-en="We have proactively implemented a rigorous quality management system — controlling every step from import and storage to transport and sales, ensuring 100% product traceability and zero risk to patient safety."
+         data-zh="我們主動建立嚴謹的品質管理系統，全面管控進口、倉儲、運輸及銷售各環節，確保產品百分之百可追溯，杜絕任何病患安全風險。">We have proactively implemented a rigorous quality management system — controlling every step from import and storage to transport and sales, ensuring 100% product traceability and zero risk to patient safety.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <div>
+    <div class="section-label" data-en="Contact Us" data-zh="聯絡我們">Contact Us</div>
+    <h2 class="section-title" data-en="Get In Touch" data-zh="歡迎洽詢合作">Get In Touch</h2>
+    <p class="contact-lead"
+       data-en="We welcome collaborations and inquiries from healthcare professionals, institutions, and global partners."
+       data-zh="歡迎醫療專業人員、醫療機構及全球合作夥伴洽詢合作事宜。">We welcome collaborations and inquiries from healthcare professionals, institutions, and global partners.</p>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label" data-en="Address" data-zh="地址">Address</div>
+        <div class="contact-value"
+             data-en="6F.-1, No. 615, Sec. 2, Datong Rd., East Dist.,<br>Tainan City 701012, Taiwan"
+             data-zh="台南市東區大同路二段615號6樓之1<br>郵遞區號 701012">6F.-1, No. 615, Sec. 2, Datong Rd., East Dist.,<br>Tainan City 701012, Taiwan</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label" data-en="Phone / Fax" data-zh="電話 / 傳真">Phone / Fax</div>
+        <div class="contact-value">Tel: <a href="tel:+886-6-2686067">+886-6-2686067</a><br>Fax: +886-6-2906485</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:zinamitw@gmail.com" target="_blank">zinamitw@gmail.com</a></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="form-title" data-en="Send a Message" data-zh="傳送訊息">Send a Message</div>
+    <div class="form-group">
+      <label class="form-label" data-en="Name" data-zh="姓名">Name</label>
+      <input type="text" class="form-input" data-ph-en="Your name" data-ph-zh="您的姓名" placeholder="Your name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label" data-en="Organization" data-zh="機構 / 公司">Organization</label>
+      <input type="text" class="form-input" data-ph-en="Hospital / Company" data-ph-zh="醫院或公司名稱" placeholder="Hospital / Company">
+    </div>
+    <div class="form-group">
+      <label class="form-label" data-en="Message" data-zh="訊息內容">Message</label>
+      <textarea class="form-textarea" data-ph-en="Your inquiry..." data-ph-zh="洽詢內容..." placeholder="Your inquiry..."></textarea>
+    </div>
+    <button class="form-btn" data-en="Send Message" data-zh="送出訊息">Send Message</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ZINAMI</div>
+  <div class="footer-copy" data-en="© 2026 Zinami Biotechnology Co., Ltd. All rights reserved." data-zh="© 2026 聖那美生技有限公司 版權所有">© 2026 Zinami Biotechnology Co., Ltd. All rights reserved.</div>
+</footer>
+
+<script>
+// ── PRODUCT DATA ─────────────────────────────────────────────
+var products = [
+  { no:'01', license:'衛部醫器輸字第036711號', nameEn:'"aap" LOQTEQ VA Plate Trauma System',                                          nameZh:'"艾彼" 雷克特萬向鎖定骨板系統',              maker:'aap Implantate AG',         date:'2028-08-29' },
+  { no:'02', license:'衛部醫器輸字第036738號', nameEn:'"Sanatmetal" Magic Nailing System',                                            nameZh:'"聖那美" 邁倢髓內釘系統',                   maker:'Sanatmetal Orthopaedic',    date:'2028-09-21' },
+  { no:'03', license:'衛部醫器輸字第036816號', nameEn:'Sanatmetal Ankle Arthrodesis Nail System',                                     nameZh:'"聖那美" 踝關節固定釘系統',                 maker:'Sanatmetal Orthopaedic',    date:'2028-10-20' },
+  { no:'04', license:'衛部醫器輸字第036879號', nameEn:'"aap" LOQTEQ Plate and Screw Trauma System',                                   nameZh:'"艾彼" 雷克特鎖定骨釘骨板系統',              maker:'aap Implantate AG',         date:'2028-12-13' },
+  { no:'05', license:'衛部醫器輸字第037198號', nameEn:'"Permedica" Jump System TRASER Trabecular Titanium Cup',                       nameZh:'"莫迪康" 崔斯特多孔髖臼杯',                 maker:'PERMEDICA S.p.A.',          date:'2029-06-06' },
+  { no:'06', license:'衛部醫器輸字第037355號', nameEn:'Innovations Medical tifix Finger & Hand System',                               nameZh:'"醫諾" 鈦菲斯手部系統',                     maker:'Innovations Medical GmbH',  date:'2029-08-07' },
+  { no:'07', license:'衛部醫器輸字第037398號', nameEn:'"Permedica" BIOLOX Ceramic Femoral Heads',                                     nameZh:'"莫迪康" 人工髖關節陶瓷股骨頭',              maker:'PERMEDICA S.p.A.',          date:'2029-09-16' },
+  { no:'08', license:'衛部醫器輸字第037620號', nameEn:'"Permedica" Standard Metal Femoral Heads',                                     nameZh:'"莫迪康" 人工髖關節金屬股骨頭',              maker:'PERMEDICA S.p.A.',          date:'2029-10-09' },
+  { no:'09', license:'衛部醫器輸字第037936號', nameEn:'"Sanatmetal" SpectruM Retrograde Femur Nail',                                  nameZh:'"聖那美" 斯貝創逆行股骨釘',                 maker:'Sanatmetal Orthopaedic',    date:'2030-04-16' },
+  { no:'10', license:'衛部醫器輸字第037940號', nameEn:'"Permedica" EXACTA Femoral Stem',                                              nameZh:'"莫迪康" 伊賽塔人工髖關節股骨柄',            maker:'PERMEDICA S.p.A.',          date:'2030-04-18' },
+  { no:'11', license:'衛部醫器輸字第038317號', nameEn:'"Sanatmetal" Vortex Polyaxial Plating System',                                 nameZh:'"聖那美" 佛特斯萬向固定骨板系統',            maker:'Sanatmetal Orthopaedic',    date:'2030-09-09' },
+  { no:'12', license:'衛部醫器輸字第038341號', nameEn:'"Sanatmetal" A-spire Compression Screw System',                               nameZh:'"聖那美" 加壓螺旋釘系統',                   maker:'Sanatmetal Orthopaedic',    date:'2030-09-30' },
+  { no:'13', license:'衛部醫器輸字第038627號', nameEn:'"Permedica" GKS PRIME FLEX Femoral Component',                                 nameZh:'"莫迪康" 居凱司普萊飛股骨組件',              maker:'PERMEDICA S.p.A.',          date:'2031-02-11' },
+  { no:'14', license:'衛部醫器輸字第038643號', nameEn:'"Permedica" JUMP SYSTEM Articular Inserts',                                    nameZh:'"莫迪康" 躍動系統關節內襯',                 maker:'PERMEDICA S.p.A.',          date:'2031-03-17' },
+  { no:'15', license:'衛部醫器輸壹字第023302號', nameEn:'"aap" Orthopedic Manual Surgical Instrument (Non-Sterile)',                  nameZh:'"艾彼" 手動式骨科手術器械（未滅菌）',         maker:'aap IMPLANTATE AG',         date:'2028-11-10' },
+  { no:'16', license:'衛部醫器輸壹字第023453號', nameEn:'"Sanatmetal" Orthopedic Manual Surgical Instrument (Non-Sterile)',           nameZh:'"聖那美" 手動式骨科手術器械（未滅菌）',       maker:'Sanatmetal Orthopaedic',    date:'2029-04-24' },
+  { no:'17', license:'衛部醫器輸壹字第023555號', nameEn:'Innovations Medical Orthopedic Manual Surgical Instrument (Non-Sterile)',    nameZh:'"醫諾" 手動式骨科手術器械（未滅菌）',         maker:'Innovations Medical GmbH',  date:'2029-08-05' },
+  { no:'18', license:'衛部醫器輸壹字第023573號', nameEn:'"risa" Surgical Instrument Motors, Accessories & Attachments (Non-Sterile)', nameZh:'"芮薩" 手術用器具馬達之配件或附件（未滅菌）', maker:'risa GmbH',                 date:'2029-08-15' }
+];
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────
+var revealObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+// ── HELPERS ───────────────────────────────────────────────────
+function licenseNo(str) {
+  var m = str.match(/第(\d+)號/);
+  return m ? m[1] : str;
+}
+
+// ── RENDER PRODUCTS ───────────────────────────────────────────
+function renderProducts(lang) {
+  var grid = document.getElementById('product-grid');
+  if (!grid) return;
+  var isZh = (lang === 'zh');
+  var html = '';
+  for (var i = 0; i < products.length; i++) {
+    var p = products[i];
+    var badge  = isZh ? p.license : 'License No. ' + licenseNo(p.license);
+    var name   = isZh ? p.nameZh  : p.nameEn;
+    var dlabel = isZh ? '有效日期：' : 'Valid: ';
+    html += '<div class="product-card">'
+          + '<div class="product-no">' + p.no + '</div>'
+          + '<div class="product-badge">' + badge + '</div>'
+          + '<div class="product-name-primary">' + name + '</div>'
+          + '<div class="product-meta">'
+          + '<span class="tag tag-maker">' + p.maker + '</span>'
+          + '<span class="tag tag-date">' + dlabel + p.date + '</span>'
+          + '</div></div>';
+  }
+  grid.innerHTML = html;
+}
+
+// ── LANGUAGE TOGGLE ───────────────────────────────────────────
+function setLang(lang) {
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.documentElement.lang = (lang === 'zh') ? 'zh-TW' : 'en';
+
+  document.querySelectorAll('[data-en],[data-zh]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val !== null) el.innerHTML = val;
+  });
+
+  document.querySelectorAll('[data-ph-en]').forEach(function(el) {
+    var val = el.getAttribute('data-ph-' + lang);
+    if (val) el.placeholder = val;
+  });
+
+  var t = document.getElementById('hero-title');
+  if (t) {
+    t.innerHTML = (lang === 'zh')
+      ? '先進臨床<br><span>解決</span>方案'
+      : 'Advancing<br><span>Clinical</span>Solutions';
+  }
+
+  renderProducts(lang);
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+renderProducts('en');
+</script>
+</body>
+</html>
