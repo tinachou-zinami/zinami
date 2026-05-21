@@ -725,7 +725,7 @@ function renderProducts() {
     var name = isZh ? p.nameZh : p.nameEn;
     var licenseDisplay = isZh
       ? p.license
-      : (p.license.indexOf('輸壹') >= 0 ? 'License No. (壹) ' : 'License No. ') + licenseShort(p.license);
+      : 'License No. ' + licenseShort(p.license);
 
     html += '<div class="product-card" data-brand="' + p.brand + '">'
           + '<div class="product-head">'
