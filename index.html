@@ -186,7 +186,7 @@
   #products { background:linear-gradient(180deg, #EEF3F6 0%, #E4EDF2 100%); position:relative; }
   /* Animated subtle background sheen */
   #products::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 60%, rgba(103,212,242,.08) 0%, transparent 50%); pointer-events:none; animation:slowDrift 18s ease-in-out infinite alternate; }
-  .products-banner { position:relative; width:calc(100% + 160px); margin:-120px -80px 60px; height:340px; background:url('assets/product-aap-screws.png') center/cover no-repeat; overflow:hidden; border-radius:0; display:flex; align-items:center; }
+  .products-banner { position:relative; width:calc(100% + 160px); margin:-120px -80px 60px; height:340px; background:url('assets/products-banner.png') center/cover no-repeat; overflow:hidden; border-radius:0; display:flex; align-items:center; }
   .products-banner-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,25,31,.78) 0%, rgba(8,25,31,.45) 40%, rgba(8,25,31,.15) 70%, transparent 100%); }
   .products-banner-content { position:relative; z-index:2; padding:0 80px; max-width:780px; }
   .products-banner-tag { display:inline-flex; align-items:center; gap:14px; font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--accent-bright); margin-bottom:18px; }
@@ -201,23 +201,23 @@
   .filter-chip.active { background:var(--navy); color:#fff; border-color:var(--navy); }
   .filter-chip .count { font-size:10px; opacity:.6; font-weight:500; }
   .products-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-  .product-card { background:rgba(255,255,255,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding:28px 28px 24px; transition:all .3s; position:relative; overflow:hidden; border-bottom:3px solid transparent; display:flex; flex-direction:column; gap:14px; border-radius:8px; border:1px solid rgba(255,255,255,.6); }
+  .product-card { background:rgba(255,255,255,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding:0 0 24px; transition:all .3s; position:relative; overflow:hidden; border-bottom:3px solid transparent; display:flex; flex-direction:column; gap:14px; border-radius:8px; border:1px solid rgba(255,255,255,.6); }
   .product-card:hover { border-bottom-color:var(--accent); transform:translateY(-2px); box-shadow:0 14px 40px rgba(27,68,88,.1); }
-  .product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--navy),var(--accent)); }
+  .product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--navy),var(--accent)); z-index:1; }
+  .product-card-body { padding:20px 28px 0; display:flex; flex-direction:column; gap:14px; flex:1; }
+  .product-img { width:100%; height:160px; overflow:hidden; flex-shrink:0; background:var(--bg-deep); }
+  .product-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s; }
+  .product-card:hover .product-img img { transform:scale(1.04); }
+  .product-meta { display:flex; flex-wrap:wrap; gap:6px; padding-top:14px; border-top:1px solid var(--gray-light); margin-top:auto; }
   .product-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
   .product-no { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--gray-mid); line-height:1; letter-spacing:-.5px; }
   .product-badge { display:inline-flex; align-items:center; gap:6px; font-size:10px; color:var(--accent); font-weight:700; letter-spacing:.5px; align-self:flex-start; padding:4px 10px; background:var(--accent-soft); border-radius:999px; }
   .product-badge .icon-sm { width:12px; height:12px; stroke-width:2.5; }
   .product-name-primary { font-family:'Barlow Condensed','Noto Sans TC',sans-serif; font-size:20px; font-weight:700; color:var(--navy-dark); letter-spacing:.3px; line-height:1.25; }
   .product-license { font-size:11px; color:var(--text-muted); font-family:'Barlow','Noto Sans TC',sans-serif; letter-spacing:.5px; }
-  .product-meta { display:flex; flex-wrap:wrap; gap:6px; padding-top:14px; border-top:1px solid var(--gray-light); margin-top:auto; }
   .tag { font-size:10px; font-weight:600; padding:4px 10px; letter-spacing:.5px; display:inline-flex; align-items:center; gap:5px; border-radius:4px; }
   .tag-maker { background:rgba(27,68,88,.08); color:var(--navy); }
   .tag-date { background:rgba(76,168,200,.1); color:var(--navy-light); }
-  .product-card.hidden { display:none; }
-  .product-img { width:100%; height:160px; object-fit:cover; border-radius:6px 6px 0 0; margin:-28px -28px 12px -28px; width:calc(100% + 56px); overflow:hidden; position:relative; }
-  .product-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s; }
-  .product-card:hover .product-img img { transform:scale(1.04); }
   .empty-state { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-muted); font-size:14px; }
 
   /* COMPLIANCE */
@@ -748,6 +748,7 @@ function renderProducts() {
 
     html += '<div class="product-card" data-brand="' + p.brand + '">'
           + imgHtml
+          + '<div class="product-card-body">'
           + '<div class="product-head">'
           +   '<div class="product-no">' + p.no + '</div>'
           +   '<div class="product-badge"><svg class="icon icon-sm"><use href="#i-check"/></svg>TFDA</div>'
@@ -757,6 +758,7 @@ function renderProducts() {
           + '<div class="product-meta">'
           +   '<span class="tag tag-maker"><svg class="icon icon-sm" style="width:11px;height:11px"><use href="#i-factory"/></svg>' + p.maker + '</span>'
           +   '<span class="tag tag-date"><svg class="icon icon-sm" style="width:11px;height:11px"><use href="#i-cal"/></svg>' + dateLabel + ' ' + p.date + '</span>'
+          + '</div>'
           + '</div>'
           + '</div>';
   }
