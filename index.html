@@ -3,27 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zinami Biotechnology Co., Ltd. — Premier Medical Device Distributor in Taiwan</title>
+<title id="page-title">Zinami Biotechnology Co., Ltd. — Premier Medical Device Distributor in Taiwan</title>
 
-<!-- SEO -->
-<meta name="description" content="Zinami Biotechnology is a premier medical device distributor in Taiwan, authorized for aap, Sanatmetal, Permedica, Innovations Medical and risa across Orthopedics, Fracture Fixation, Neurosurgery and Regenerative Medicine.">
-<meta name="keywords" content="medical device distributor Taiwan, orthopedic implants, TFDA licensed, Sanatmetal, Permedica, aap Implantate, Zinami, 聖那美生技, 醫療器材代理">
+<!-- SEO (dynamically updated on language switch) -->
+<meta id="meta-description" name="description" content="Zinami Biotechnology is a premier medical device distributor in Taiwan, authorized for aap, Sanatmetal, Permedica, Innovations Medical and risa across Orthopedics, Fracture Fixation, Neurosurgery and Regenerative Medicine.">
+<meta id="meta-keywords" name="keywords" content="medical device distributor Taiwan, orthopedic implants, TFDA licensed, Sanatmetal, Permedica, aap Implantate, Zinami, 聖那美生技, 醫療器材代理">
 <meta name="author" content="Zinami Biotechnology Co., Ltd.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tinachou-zinami.github.io/zinami/">
+<link rel="alternate" hreflang="en" href="https://tinachou-zinami.github.io/zinami/">
+<link rel="alternate" hreflang="zh-Hant" href="https://tinachou-zinami.github.io/zinami/?lang=zh">
+<link rel="alternate" hreflang="x-default" href="https://tinachou-zinami.github.io/zinami/">
 
 <!-- Open Graph -->
+<meta id="og-title" property="og:title" content="Zinami Biotechnology — Premier Medical Device Distributor in Taiwan">
+<meta id="og-description" property="og:description" content="Authorized Taiwanese distributor for world-renowned orthopedic, trauma and neurosurgery innovators. 19 TFDA-licensed products.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Zinami Biotechnology — Premier Medical Device Distributor in Taiwan">
-<meta property="og:description" content="Authorized Taiwanese distributor for world-renowned orthopedic, trauma and neurosurgery innovators. 19 TFDA-licensed products.">
-<meta property="og:locale" content="en_US">
+<meta id="og-locale" property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="zh_TW">
 <meta property="og:site_name" content="Zinami Biotechnology">
+<meta property="og:url" content="https://tinachou-zinami.github.io/zinami/">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Zinami Biotechnology — Medical Device Distributor in Taiwan">
-<meta name="twitter:description" content="Premier medical device distributor across Orthopedics, Trauma, Neurosurgery and Regenerative Medicine.">
+<meta id="twitter-title" name="twitter:title" content="Zinami Biotechnology — Medical Device Distributor in Taiwan">
+<meta id="twitter-description" name="twitter:description" content="Premier medical device distributor across Orthopedics, Trauma, Neurosurgery and Regenerative Medicine.">
+
+<!-- SEO meta translations (read by JS on lang switch) -->
+<script type="application/json" id="seo-translations">
+{
+  "en": {
+    "title": "Zinami Biotechnology Co., Ltd. — Premier Medical Device Distributor in Taiwan",
+    "description": "Zinami Biotechnology is a premier medical device distributor in Taiwan, authorized for aap, Sanatmetal, Permedica, Innovations Medical and risa across Orthopedics, Fracture Fixation, Neurosurgery and Regenerative Medicine.",
+    "keywords": "medical device distributor Taiwan, orthopedic implants, TFDA licensed, Sanatmetal, Permedica, aap Implantate, Zinami",
+    "ogTitle": "Zinami Biotechnology — Premier Medical Device Distributor in Taiwan",
+    "ogDescription": "Authorized Taiwanese distributor for world-renowned orthopedic, trauma and neurosurgery innovators. 19 TFDA-licensed products.",
+    "ogLocale": "en_US"
+  },
+  "zh": {
+    "title": "聖那美生技有限公司 — 台灣頂尖醫療器材代理商",
+    "description": "聖那美生技為台灣頂尖醫療器材代理商，取得 aap、Sanatmetal、Permedica、Innovations Medical 及 risa 等國際品牌台灣授權，專注於骨科、骨折固定、神經外科、再生醫學及重建外科領域。",
+    "keywords": "醫療器材代理, 台灣醫材, 骨科植入物, TFDA 許可, Sanatmetal, Permedica, aap, 聖那美生技, 國際醫療器材代理商",
+    "ogTitle": "聖那美生技 — 台灣頂尖醫療器材代理商",
+    "ogDescription": "台灣授權代理世界知名骨科、創傷與神經外科品牌，共 19 項 TFDA 許可證產品。",
+    "ogLocale": "zh_TW"
+  }
+}
+</script>
 
 <!-- Favicon (inline SVG) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231B4458'/%3E%3Ctext x='32' y='44' font-family='Helvetica,Arial,sans-serif' font-size='34' font-weight='800' text-anchor='middle' fill='%234CA8C8' letter-spacing='-1'%3EZ%3C/text%3E%3C/svg%3E">
@@ -201,23 +227,20 @@
   .filter-chip.active { background:var(--navy); color:#fff; border-color:var(--navy); }
   .filter-chip .count { font-size:10px; opacity:.6; font-weight:500; }
   .products-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-  .product-card { background:rgba(255,255,255,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding:0 0 24px; transition:all .3s; position:relative; overflow:hidden; border-bottom:3px solid transparent; display:flex; flex-direction:column; gap:14px; border-radius:8px; border:1px solid rgba(255,255,255,.6); }
+  .product-card { background:rgba(255,255,255,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding:28px 28px 24px; transition:all .3s; position:relative; overflow:hidden; border-bottom:3px solid transparent; display:flex; flex-direction:column; gap:14px; border-radius:8px; border:1px solid rgba(255,255,255,.6); }
   .product-card:hover { border-bottom-color:var(--accent); transform:translateY(-2px); box-shadow:0 14px 40px rgba(27,68,88,.1); }
-  .product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--navy),var(--accent)); z-index:1; }
-  .product-card-body { padding:20px 28px 0; display:flex; flex-direction:column; gap:14px; flex:1; }
-  .product-img { width:100%; height:160px; overflow:hidden; flex-shrink:0; background:var(--bg-deep); }
-  .product-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s; }
-  .product-card:hover .product-img img { transform:scale(1.04); }
-  .product-meta { display:flex; flex-wrap:wrap; gap:6px; padding-top:14px; border-top:1px solid var(--gray-light); margin-top:auto; }
+  .product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--navy),var(--accent)); }
   .product-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
   .product-no { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--gray-mid); line-height:1; letter-spacing:-.5px; }
   .product-badge { display:inline-flex; align-items:center; gap:6px; font-size:10px; color:var(--accent); font-weight:700; letter-spacing:.5px; align-self:flex-start; padding:4px 10px; background:var(--accent-soft); border-radius:999px; }
   .product-badge .icon-sm { width:12px; height:12px; stroke-width:2.5; }
   .product-name-primary { font-family:'Barlow Condensed','Noto Sans TC',sans-serif; font-size:20px; font-weight:700; color:var(--navy-dark); letter-spacing:.3px; line-height:1.25; }
   .product-license { font-size:11px; color:var(--text-muted); font-family:'Barlow','Noto Sans TC',sans-serif; letter-spacing:.5px; }
+  .product-meta { display:flex; flex-wrap:wrap; gap:6px; padding-top:14px; border-top:1px solid var(--gray-light); margin-top:auto; }
   .tag { font-size:10px; font-weight:600; padding:4px 10px; letter-spacing:.5px; display:inline-flex; align-items:center; gap:5px; border-radius:4px; }
   .tag-maker { background:rgba(27,68,88,.08); color:var(--navy); }
   .tag-date { background:rgba(76,168,200,.1); color:var(--navy-light); }
+  .product-card.hidden { display:none; }
   .empty-state { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-muted); font-size:14px; }
 
   /* COMPLIANCE */
@@ -632,7 +655,7 @@
   </div>
   <div class="form-card">
     <div class="form-title" data-en="Send a Message" data-zh="傳送訊息">Send a Message</div>
-    <div class="form-sub" data-en="We typically respond within one business day." data-zh="我們通常於一個工作日內回覆。">We typically respond within one business day.</div>
+    <div class="form-sub" data-en="Click Send Message to open your email client with the inquiry pre-filled." data-zh="點擊「送出訊息」會自動開啟您的郵件程式並預填內容。">Click Send Message to open your email client with the inquiry pre-filled.</div>
     <form id="contact-form" novalidate>
       <div class="form-group">
         <label class="form-label" for="f-name" data-en="Name" data-zh="姓名">Name<span class="req">*</span></label>
@@ -691,19 +714,8 @@ var products = [
   { no:'19', brand:'risa',        license:'衛部醫器輸壹字第023573號', nameEn:'"risa" Surgical Instrument Motors, Accessories & Attachments (Non-Sterile)',  nameZh:'"芮薩" 手術用器具馬達之配件或附件（未滅菌）', maker:'risa GmbH',                 date:'2029-08-15' }
 ];
 
-// PRODUCT IMAGES (brand -> image path; add to assets/ folder)
-// Image 1 (product-aap-plates.png)      → aap LOQTEQ plating system
-// Image 2 (product-aap-screws.png)      → aap hollow screws (also aap)
-// Image 3 (product-sanatmetal.png)      → Sanatmetal Vortex Reconstruction Plate
-// Image 4 (product-innovations.png)     → Innovations Medical mini plates
-// Image 5 (product-risa.png)            → risa Flexible Reamers
-var productImages = {
-  'aap':         'assets/product-aap-plates.png',
-  'sanatmetal':  'assets/product-sanatmetal.png',
-  'risa':        'assets/product-risa.png',
-  'innovations': 'assets/product-innovations.png',
-  'permedica':   'assets/product-permedica.png'
-};
+var currentLang = 'en';
+var currentBrand = 'all';
 
 // SCROLL REVEAL
 var revealObs = new IntersectionObserver(function(entries) {
@@ -741,14 +753,7 @@ function renderProducts() {
       ? p.license
       : 'License No. ' + licenseShort(p.license);
 
-    var imgSrc = productImages[p.brand];
-    var imgHtml = imgSrc
-      ? '<div class="product-img"><img src="' + imgSrc + '" alt="' + p.maker + ' product photo" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div>'
-      : '';
-
     html += '<div class="product-card" data-brand="' + p.brand + '">'
-          + imgHtml
-          + '<div class="product-card-body">'
           + '<div class="product-head">'
           +   '<div class="product-no">' + p.no + '</div>'
           +   '<div class="product-badge"><svg class="icon icon-sm"><use href="#i-check"/></svg>TFDA</div>'
@@ -758,7 +763,6 @@ function renderProducts() {
           + '<div class="product-meta">'
           +   '<span class="tag tag-maker"><svg class="icon icon-sm" style="width:11px;height:11px"><use href="#i-factory"/></svg>' + p.maker + '</span>'
           +   '<span class="tag tag-date"><svg class="icon icon-sm" style="width:11px;height:11px"><use href="#i-cal"/></svg>' + dateLabel + ' ' + p.date + '</span>'
-          + '</div>'
           + '</div>'
           + '</div>';
   }
@@ -798,6 +802,32 @@ function setLang(lang) {
   });
   document.documentElement.lang = (lang === 'zh') ? 'zh-TW' : 'en';
 
+  // Sync <head> SEO meta tags for current language
+  try {
+    var seoBlob = document.getElementById('seo-translations');
+    if (seoBlob) {
+      var seo = JSON.parse(seoBlob.textContent)[lang];
+      if (seo) {
+        document.getElementById('page-title').textContent = seo.title;
+        document.getElementById('meta-description').setAttribute('content', seo.description);
+        document.getElementById('meta-keywords').setAttribute('content', seo.keywords);
+        document.getElementById('og-title').setAttribute('content', seo.ogTitle);
+        document.getElementById('og-description').setAttribute('content', seo.ogDescription);
+        document.getElementById('og-locale').setAttribute('content', seo.ogLocale);
+        document.getElementById('twitter-title').setAttribute('content', seo.ogTitle);
+        document.getElementById('twitter-description').setAttribute('content', seo.ogDescription);
+      }
+    }
+  } catch (e) {}
+
+  // Persist language in URL query so deep links (and hreflang) resolve correctly
+  try {
+    var url = new URL(window.location.href);
+    if (lang === 'zh') url.searchParams.set('lang', 'zh');
+    else url.searchParams.delete('lang');
+    history.replaceState(null, '', url.toString());
+  } catch (e) {}
+
   document.querySelectorAll('[data-en],[data-zh]').forEach(function(el) {
     var val = el.getAttribute('data-' + lang);
     if (val !== null) el.innerHTML = val;
@@ -833,10 +863,7 @@ function closeMenu() {
 }
 
 // CONTACT FORM
-// To wire up: replace the FORMSPREE_ID below with your real Formspree form ID (https://formspree.io)
-// or swap to Web3Forms / your own endpoint. For now, the form validates client-side and shows a success state.
-var FORMSPREE_ENDPOINT = ''; // e.g. 'https://formspree.io/f/your-id'
-
+// No backend — opens user's email client with pre-filled message (mailto fallback).
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
   var form = e.target;
@@ -844,49 +871,38 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   var btn = document.getElementById('form-submit');
   var isZh = currentLang === 'zh';
 
-  // Basic validation
   if (!form.checkValidity()) {
     status.className = 'form-status error';
     status.textContent = isZh ? '請填寫所有必填欄位。' : 'Please fill in all required fields.';
     return;
   }
 
-  btn.disabled = true;
-  var originalBtn = btn.innerHTML;
-  btn.innerHTML = '<span>' + (isZh ? '送出中...' : 'Sending...') + '</span>';
-  status.className = 'form-status';
-  status.textContent = '';
+  var name = form.name.value.trim();
+  var email = form.email.value.trim();
+  var org = form.organization.value.trim();
+  var message = form.message.value.trim();
 
-  var data = new FormData(form);
+  var subject = (isZh ? '[網站洽詢] ' : '[Website Inquiry] ') + name + (org ? ' / ' + org : '');
+  var bodyLines = [
+    (isZh ? '姓名：' : 'Name: ') + name,
+    (isZh ? '電子郵件：' : 'Email: ') + email,
+    (isZh ? '機構 / 公司：' : 'Organization: ') + (org || '-'),
+    '',
+    (isZh ? '訊息內容：' : 'Message:'),
+    message
+  ];
+  var mailto = 'mailto:zinamitw@gmail.com'
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(bodyLines.join('\r\n'));
 
-  var done = function(success) {
-    btn.disabled = false;
-    btn.innerHTML = originalBtn;
-    if (success) {
-      status.className = 'form-status success';
-      status.textContent = isZh ? '✓ 訊息已送出，我們將盡快回覆您。' : '✓ Message sent. We will get back to you shortly.';
-      form.reset();
-    } else {
-      status.className = 'form-status error';
-      status.textContent = isZh ? '送出失敗，請改用 Email 直接聯絡我們。' : 'Send failed. Please email us directly.';
-    }
-  };
+  // Open user's email client
+  window.location.href = mailto;
 
-  // Build mailto link from form data and open email client
-  var name = data.get('name') || '';
-  var email = data.get('email') || '';
-  var org = data.get('organization') || '';
-  var msg = data.get('message') || '';
-  var subject = encodeURIComponent('[Zinami Inquiry] ' + (org ? org + ' - ' : '') + name);
-  var body = encodeURIComponent(
-    'Name: ' + name + '\n' +
-    'Email: ' + email + '\n' +
-    (org ? 'Organization: ' + org + '\n' : '') +
-    '\nMessage:\n' + msg
-  );
-  var mailtoLink = 'mailto:zinamitw@gmail.com?subject=' + subject + '&body=' + body;
-  window.location.href = mailtoLink;
-  setTimeout(function() { done(true); }, 800);
+  // Show confirmation
+  status.className = 'form-status success';
+  status.textContent = isZh
+    ? '✓ 已開啟您的郵件程式，請確認後送出。如未開啟，請直接寄信至 zinamitw@gmail.com'
+    : '✓ Your email client has been opened. Please review and send. If nothing opened, email us directly at zinamitw@gmail.com';
 });
 
 // EMAIL OBFUSCATION (defeats Cloudflare auto-protection + spam scrapers)
@@ -904,6 +920,14 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 // INIT
 updateCounts();
 renderProducts();
+
+// Honour ?lang=zh on first load (for shared deep links + hreflang)
+(function() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('lang') === 'zh') setLang('zh');
+  } catch (e) {}
+})();
 </script>
 </body>
 </html>
