@@ -901,8 +901,8 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   // Show confirmation
   status.className = 'form-status success';
   status.textContent = isZh
-    ? '✓ 已開啟您的郵件程式，請確認後送出。如未開啟，請直接寄信至 zinamitw@gmail.com'
-    : '✓ Your email client has been opened. Please review and send. If nothing opened, email us directly at zinamitw@gmail.com';
+    ? '✓ 已開啟您的郵件程式，請確認後送出。若未自動開啟，請直接寄信至 zinamitw@gmail.com'
+    : '✓ Your email client has just opened with the message pre-filled. Please review and send. If nothing opened, email zinamitw@gmail.com directly.';
 });
 
 // EMAIL OBFUSCATION (defeats Cloudflare auto-protection + spam scrapers)
