@@ -340,8 +340,11 @@
     .compliance-grid { grid-template-columns:1fr; }
     .hero-stats { gap:24px; }
     .stat { padding-right:24px; }
-    .products-banner { width:calc(100% + 48px); margin:-70px -24px 40px; height:240px; }
-    .products-banner-content { padding:0 24px; }
+    .products-banner { width:calc(100% + 48px); margin:0 -24px 32px; height:200px; background-position:right center; background-color:#0F2A38; }
+    .products-banner-overlay { background:linear-gradient(90deg, rgba(8,25,31,.88) 0%, rgba(8,25,31,.55) 55%, rgba(8,25,31,.2) 100%); }
+    .products-banner-content { padding:0 24px; max-width:100%; }
+    .products-banner-title { font-size:clamp(20px,5vw,26px); }
+    .products-banner-tag { font-size:10px; letter-spacing:2.5px; margin-bottom:12px; }
     .stat-num { font-size:36px; }
     footer { flex-direction:column; gap:16px; text-align:center; padding:36px 24px; }
     .footer-left { flex-direction:column; gap:8px; }
