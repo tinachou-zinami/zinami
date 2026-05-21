@@ -10,7 +10,7 @@
 <meta name="keywords" content="medical device distributor Taiwan, orthopedic implants, TFDA licensed, Sanatmetal, Permedica, aap Implantate, Zinami, 聖那美生技, 醫療器材代理">
 <meta name="author" content="Zinami Biotechnology Co., Ltd.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://zinami.com.tw/">
+<link rel="canonical" href="https://tinachou-zinami.github.io/zinami/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -41,7 +41,7 @@
   "name": "Zinami Biotechnology Co., Ltd.",
   "alternateName": "聖那美生技有限公司",
   "description": "Premier medical device distributor in Taiwan specializing in orthopedics, fracture fixation, neurosurgery, regenerative medicine and reconstructive surgery.",
-  "url": "https://zinami.com.tw/",
+  "url": "https://tinachou-zinami.github.io/zinami/",
   "telephone": "+886-6-2686067",
   "faxNumber": "+886-6-2906485",
   "email": "zinamitw@gmail.com",
@@ -186,7 +186,7 @@
   #products { background:linear-gradient(180deg, #EEF3F6 0%, #E4EDF2 100%); position:relative; }
   /* Animated subtle background sheen */
   #products::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 60%, rgba(103,212,242,.08) 0%, transparent 50%); pointer-events:none; animation:slowDrift 18s ease-in-out infinite alternate; }
-  .products-banner { position:relative; width:calc(100% + 160px); margin:-120px -80px 60px; height:340px; background:url('assets/products-banner.png') center/cover no-repeat; overflow:hidden; border-radius:0; display:flex; align-items:center; }
+  .products-banner { position:relative; width:calc(100% + 160px); margin:-120px -80px 60px; height:340px; background:url('assets/product-aap-screws.png') center/cover no-repeat; overflow:hidden; border-radius:0; display:flex; align-items:center; }
   .products-banner-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,25,31,.78) 0%, rgba(8,25,31,.45) 40%, rgba(8,25,31,.15) 70%, transparent 100%); }
   .products-banner-content { position:relative; z-index:2; padding:0 80px; max-width:780px; }
   .products-banner-tag { display:inline-flex; align-items:center; gap:14px; font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--accent-bright); margin-bottom:18px; }
@@ -215,6 +215,9 @@
   .tag-maker { background:rgba(27,68,88,.08); color:var(--navy); }
   .tag-date { background:rgba(76,168,200,.1); color:var(--navy-light); }
   .product-card.hidden { display:none; }
+  .product-img { width:100%; height:160px; object-fit:cover; border-radius:6px 6px 0 0; margin:-28px -28px 12px -28px; width:calc(100% + 56px); overflow:hidden; position:relative; }
+  .product-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s; }
+  .product-card:hover .product-img img { transform:scale(1.04); }
   .empty-state { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-muted); font-size:14px; }
 
   /* COMPLIANCE */
@@ -688,8 +691,19 @@ var products = [
   { no:'19', brand:'risa',        license:'衛部醫器輸壹字第023573號', nameEn:'"risa" Surgical Instrument Motors, Accessories & Attachments (Non-Sterile)',  nameZh:'"芮薩" 手術用器具馬達之配件或附件（未滅菌）', maker:'risa GmbH',                 date:'2029-08-15' }
 ];
 
-var currentLang = 'en';
-var currentBrand = 'all';
+// PRODUCT IMAGES (brand -> image path; add to assets/ folder)
+// Image 1 (product-aap-plates.png)      → aap LOQTEQ plating system
+// Image 2 (product-aap-screws.png)      → aap hollow screws (also aap)
+// Image 3 (product-sanatmetal.png)      → Sanatmetal Vortex Reconstruction Plate
+// Image 4 (product-innovations.png)     → Innovations Medical mini plates
+// Image 5 (product-risa.png)            → risa Flexible Reamers
+var productImages = {
+  'aap':         'assets/product-aap-plates.png',
+  'sanatmetal':  'assets/product-sanatmetal.png',
+  'risa':        'assets/product-risa.png',
+  'innovations': 'assets/product-innovations.png',
+  'permedica':   'assets/product-permedica.png'
+};
 
 // SCROLL REVEAL
 var revealObs = new IntersectionObserver(function(entries) {
@@ -727,7 +741,13 @@ function renderProducts() {
       ? p.license
       : 'License No. ' + licenseShort(p.license);
 
+    var imgSrc = productImages[p.brand];
+    var imgHtml = imgSrc
+      ? '<div class="product-img"><img src="' + imgSrc + '" alt="' + p.maker + ' product photo" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div>'
+      : '';
+
     html += '<div class="product-card" data-brand="' + p.brand + '">'
+          + imgHtml
           + '<div class="product-head">'
           +   '<div class="product-no">' + p.no + '</div>'
           +   '<div class="product-badge"><svg class="icon icon-sm"><use href="#i-check"/></svg>TFDA</div>'
@@ -850,16 +870,21 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     }
   };
 
-  if (FORMSPREE_ENDPOINT) {
-    fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    }).then(function(r) { done(r.ok); }).catch(function() { done(false); });
-  } else {
-    // Demo fallback — simulate success so the form is responsive before backend is wired up
-    setTimeout(function() { done(true); }, 700);
-  }
+  // Build mailto link from form data and open email client
+  var name = data.get('name') || '';
+  var email = data.get('email') || '';
+  var org = data.get('organization') || '';
+  var msg = data.get('message') || '';
+  var subject = encodeURIComponent('[Zinami Inquiry] ' + (org ? org + ' - ' : '') + name);
+  var body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    (org ? 'Organization: ' + org + '\n' : '') +
+    '\nMessage:\n' + msg
+  );
+  var mailtoLink = 'mailto:zinamitw@gmail.com?subject=' + subject + '&body=' + body;
+  window.location.href = mailtoLink;
+  setTimeout(function() { done(true); }, 800);
 });
 
 // EMAIL OBFUSCATION (defeats Cloudflare auto-protection + spam scrapers)
